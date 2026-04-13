@@ -1,6 +1,6 @@
 ﻿#include "DxLib.h"
 #include "Config.h"
-#include "Board.h"
+#include "GameManager.h"
 
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_  HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nShowCmd)
 {
@@ -13,17 +13,17 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_  HINSTANCE hPrevInstance, 
 		return -1;
 	}
 
-	static Board board;		// ボードのインスタンス
+	static GameManager gameManager;
 
 	while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
 	{
 		ClearDrawScreen();
 
-		// ボードの更新
-		board.Update();
+		// 更新
+		gameManager.Update();
 
-		// ボードの表示
-		board.Draw();
+		// 表示
+		gameManager.Draw();
 
 		ScreenFlip();
 	}

@@ -15,7 +15,15 @@ namespace Config
 	{
 		const int SIZE = Config::Window::WIDTH / 4 * 2;		// ボードの大きさ
 		const int SPLIT_NUM = 3;		// ボードの分割数
-		const unsigned int BOARD_COLOR[3] = { 255,255,255 };	// ボードの色
-		const unsigned int LINE_COLOR[3] = { 255,0,255 };	// ラインの色
+		const int BOARD_COLOR[3] = { 255,255,100 };	// ボードの色
+		const int LINE_COLOR[3] = { 0,100,255 };	// ラインの色
+	}
+
+	// コマの設定
+	namespace Piece
+	{
+		const int RADIUS = Config::Board::SIZE / 6;	// コマの半径
+		const int COLOR_BLACK[3] = { 0,0,0 };			// 黒コマの色
+		const int COLOR_WHITE[3] = { 255,255,255 };		// 白コマの色
 	}
 }
