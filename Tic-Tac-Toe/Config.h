@@ -13,6 +13,15 @@ namespace Config
 	// ボード設定
 	namespace Board
 	{
+		// 各マスの状態
+		enum State
+		{
+			NONE,	// 何も置かれてない
+			BLACK,	// 黒コマが置かれている
+			WHITE,	// 白コマが置かれている
+		};
+		const int CENTER_X = Config::Window::WIDTH / 2;
+		const int CENTER_Y = Config::Window::HEIGHT / 2;
 		const int SIZE = Config::Window::WIDTH / 4 * 2;		// ボードの大きさ
 		const int SPLIT_NUM = 3;		// ボードの分割数
 		const int BOARD_COLOR[3] = { 255,255,100 };	// ボードの色

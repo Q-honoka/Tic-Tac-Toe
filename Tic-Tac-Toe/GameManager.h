@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "Board.h"
 #include "InputManager.h"
+#include "Piece.h"
 
 /*
 	名前：GameManager.h
@@ -20,4 +21,5 @@ public:
 private:
 	InputManager inputManager;
 	Board board;
+	Piece pieces[Config::Board::SPLIT_NUM * Config::Board::SPLIT_NUM];
 };
