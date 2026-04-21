@@ -19,7 +19,11 @@ public:
 	void Finalize();		// 終了
 
 private:
-	InputManager inputManager;
-	Board board;
-	Piece pieces[Config::Board::SPLIT_NUM * Config::Board::SPLIT_NUM];
+	const unsigned int pieceColorFirst;		// 先手のコマの色
+	const unsigned int pieceColorSecond;	// 後手のコマの色
+	bool isEnd;	// 終了フラグ
+	Config::Game::Turn turn;	// 手番
+	InputManager inputManager;	// 入力管理クラス
+	Board board;				// ボード管理クラス
+	Piece pieces[Config::Board::SPLIT_NUM * Config::Board::SPLIT_NUM];	// コマの数
 };

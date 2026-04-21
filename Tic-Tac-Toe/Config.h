@@ -10,6 +10,35 @@ namespace Config
 		const int COLOR_BIT_DEPTH = 32;	// カラービット数
 	}
 
+	// ゲーム全体の設定
+	namespace Game
+	{
+		// ゲームの状態
+		enum State
+		{
+			TITLE,			// タイトル
+			GAME_START,		// ゲームスタート
+			GAME_SELECT,	// ゲーム中
+			GAME_END,		// ゲーム終了
+			RESULT,			// リザルト
+		};
+		// リザルトの種類
+		enum ResultKind
+		{
+			FIRST_WIN,		// 先手の勝ち
+			SECOND_WIN,		// 後手の勝ち
+			DRAW,			// 引き分け
+			CONTINUE,		// 勝敗なし
+		};
+		// 手番
+		enum Turn
+		{
+			FIRST,		// 先手
+			SECOND,		// 後手
+			ALL			// すべて
+		};
+	}
+
 	// ボード設定
 	namespace Board
 	{
@@ -32,7 +61,7 @@ namespace Config
 	namespace Piece
 	{
 		const int RADIUS = Config::Board::SIZE / 6;	// コマの半径
-		const int COLOR_BLACK[3] = { 0,0,0 };			// 黒コマの色
-		const int COLOR_WHITE[3] = { 255,255,255 };		// 白コマの色
+		const int COLOR_FIRST[3] = { 0,0,0 };			// 黒コマの色
+		const int COLOR_SECOND[3] = { 255,255,255 };		// 白コマの色
 	}
 }
