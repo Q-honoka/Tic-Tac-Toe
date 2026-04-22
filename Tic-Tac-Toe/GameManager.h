@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "Board.h"
 #include "InputManager.h"
-#include "Piece.h"
+#include <string>
 
 /*
 	名前：GameManager.h
@@ -25,5 +25,5 @@ private:
 	Config::Game::Turn turn;	// 手番
 	InputManager inputManager;	// 入力管理クラス
 	Board board;				// ボード管理クラス
-	Piece pieces[Config::Board::SPLIT_NUM * Config::Board::SPLIT_NUM];	// コマの数
+	std::string resultMessage;	// 結果メッセージ
 };

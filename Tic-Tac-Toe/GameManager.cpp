@@ -11,7 +11,7 @@ GameManager::GameManager() :
 	turn(Config::Game::Turn::FIRST),
 	inputManager(InputManager()),
 	board(Board()),
-	pieces(Piece())
+	resultMessage("終了")
 {
 	Initialize();
 }
@@ -20,22 +20,7 @@ GameManager::GameManager() :
 /// 初期化
 /// </summary>
 void GameManager::Initialize()
-{
-	// すべてのコマの座標を設定する
-	const int split = Config::Board::SPLIT_NUM;
-	const int startX = Config::Board::CENTER_X - Config::Board::SIZE / 2;
-	const int startY = Config::Board::CENTER_Y - Config::Board::SIZE / 2;
-	const int step = Config::Board::SIZE / split;
-	for (int i = 0; i < split; i++)
-	{
-		for (int j = 0; j < split; j++)
-		{
-			int x = startX + step * j + step / 2;
-			int y = startY + step * i + step / 2;
-			pieces[i * split + j].SetPosition(x, y);
-		}
-	}
-}
+{ }
 
 /// <summary>
 /// 更新
@@ -45,25 +30,24 @@ void GameManager::Update()
 	if (isEnd)
 	{
 		Config::Game::ResultKind result = board.GetCheckResult();
-
 		switch (result)
 		{
 		case Config::Game::FIRST_WIN:
-			printfDx("１の勝ち\n");
+			resultMessage = "１の勝ち";
 			break;
 		case Config::Game::SECOND_WIN:
-			printfDx("２の勝ち\n");
+			resultMessage = "２の勝ち";
 			break;
 		case Config::Game::DRAW:
-			printfDx("引き分け\n");
+			resultMessage = "引き分け";
 			break;
 		case Config::Game::CONTINUE:
-			break;
 		default:
 			break;
 		}
 
-		WaitKey();
+		// 結果を表示
+		return;
 	}
 
 	// 入力データ取得
@@ -90,6 +74,7 @@ void GameManager::Update()
 	if (board.GetCheckResult() != Config::Game::ResultKind::CONTINUE)
 	{
 		isEnd = true;
+		return;
 	}
 }
 
@@ -101,10 +86,9 @@ void GameManager::Draw() const
 	// ボードの描画
 	board.Draw();
 
-	// コマの描画
-	for (int i = 0; i < Config::Board::SPLIT_NUM * Config::Board::SPLIT_NUM; i++)
+	if (isEnd)
 	{
-		pieces[i].Draw();
+		DrawString(0, 0, resultMessage.c_str(), GetColor(255, 0, 0));
 	}
 }
 

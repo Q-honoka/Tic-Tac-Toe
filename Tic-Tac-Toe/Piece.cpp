@@ -46,8 +46,8 @@ void Piece::SetPosition(int centerX, int centerY)
 /// <summary>
 /// 表示を切り替えて、対応するコマの色を設定する
 /// </summary>
-/// <param name="state"></param>
-/// <param name="turn"></param>
+/// <param name="state">切り替えたい状態</param>
+/// <param name="isFirst">先手かどうか</param>
 void Piece::SetIsVisible(bool state, bool isFirst)
 {
 	isVisible = state;

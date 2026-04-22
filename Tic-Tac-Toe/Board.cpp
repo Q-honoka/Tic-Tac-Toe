@@ -15,14 +15,14 @@ Board::Board() :
 	baseColor(GetColor(Config::Board::BOARD_COLOR[0], Config::Board::BOARD_COLOR[1], Config::Board::BOARD_COLOR[2])),
 	frameColor(GetColor(Config::Board::LINE_COLOR[0], Config::Board::LINE_COLOR[1], Config::Board::LINE_COLOR[2])),
 	checkPatterns(
-		{0,3,6},
-		{1,4,7},
-		{2,5,8},
-		{0,1,2},
-		{3,4,5},
-		{6,7,8},
-		{0,4,8},
-		{2,4,6}
+		{0,3,6},	// 左列
+		{1,4,7},	// 中列
+		{2,5,8},	// 右列
+		{0,1,2},	// 上行
+		{3,4,5},	// 中行
+		{6,7,8},	// 下行
+		{0,4,8},	// 斜め（左上から右下）
+		{2,4,6}		// 斜め（右上から左下）
 		)
 {
 	// ボードの画像ハンドルを作成
@@ -81,7 +81,9 @@ bool Board::PutPiece(int posX, int posY, Config::Game::Turn turn)
 	if (pieces[num].GetIsVisible()) return false;
 
 	// そうでないなら、コマを置いてtrueを返す
-	pieces[num].SetIsVisible(true, turn);
+	if(turn == Config::Game::Turn::FIRST) pieces[num].SetIsVisible(true, true);
+	if(turn == Config::Game::Turn::SECOND) pieces[num].SetIsVisible(true, false);
+	
 	return true;
 }
 
@@ -153,6 +155,9 @@ void Board::CheckBoard()
 			if (!pieces[checkPatterns[i][j]].GetIsVisible()) isVisible = false;
 		}
 
+		// １つでも表示されていないなら、以降の処理をとばす
+		if (isVisible == false) continue;
+
 		// 揃っているか調べる
 		bool isFirstPiece = pieces[checkPatterns[i][0]].GetIsFirstPiece();
 		bool isMatch = true;
@@ -179,7 +184,6 @@ void Board::CheckBoard()
 		if (pieces[i].GetIsVisible() == false)
 		{
 			isDraw = false;
-			break;
 		}
 	}
 	if (isDraw)
