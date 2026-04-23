@@ -9,7 +9,7 @@ class Piece
 {
 public:
 	Piece();	// コンストラクタ
-	~Piece();	// デストラクタ
+	~Piece() = default;	// デストラクタ
 	void Draw() const;		// 描画
 	void SetPosition(int centerX, int centerY);	// 座標を設定する
 	void SetIsVisible(bool state, bool isFirst);	// 表示を切り替える

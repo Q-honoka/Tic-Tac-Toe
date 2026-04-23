@@ -15,14 +15,6 @@ Piece::Piece() :
 { }
 
 /// <summary>
-/// デストラクタ
-/// </summary>
-Piece::~Piece()
-{
-	
-}
-
-/// <summary>
 /// 描画処理
 /// </summary>
 void Piece::Draw() const

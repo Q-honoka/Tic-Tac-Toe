@@ -4,6 +4,7 @@
 
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_  HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nShowCmd)
 {
+	// ウィンドウの初期設定
 	ChangeWindowMode(TRUE);
 	SetGraphMode(Config::Window::WIDTH, Config::Window::HEIGHT, Config::Window::COLOR_BIT_DEPTH);
 	SetDrawScreen(DX_SCREEN_BACK);
@@ -13,8 +14,10 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_  HINSTANCE hPrevInstance, 
 		return -1;
 	}
 
+	// ゲームマネージャーのインスタンス
 	static GameManager gameManager;
 
+	// メインループ
 	while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
 	{
 		ClearDrawScreen();
