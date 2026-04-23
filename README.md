@@ -1,4 +1,4 @@
-# [Sheep Walk] 
+# [三目並べ] 
 
 <img width="80%" height="80%" alt="image_game" src="https://github.com/user-attachments/assets/ce047878-ed62-4f62-a16a-dd911bf0f409" />
 
